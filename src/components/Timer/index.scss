@@ -1,0 +1,59 @@
+@import '../../styles/abstracts';
+@import '~bootstrap/scss/forms';
+
+.timer {
+  text-align: center;
+  padding-top: map-get($spacers, 5);
+  padding-bottom: map-get($spacers, 5);
+}
+
+.timer-mode {
+  @include font-size(1.25rem);
+  color: map-get($color-variables, 'muted');
+  margin-bottom: map-get($spacers, 4);
+}
+
+.timer-time {
+  @include font-size(7rem);
+  font-family: $font-family-monospace;
+  font-weight: 500;
+  margin-bottom: map-get($spacers, 5);
+}
+
+.timer-button {
+  @include button();
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.timer-button-primary {
+  @include button-variant('main');
+  width: 4rem;
+  height: 4rem;
+  padding: 0;
+  border-radius: 1000px;
+  margin-bottom: map-get($spacers, 3);
+}
+
+.timer-button-secondary {
+  @include button-variant('transparent');
+  opacity: 0;
+  pointer-events: none;
+  transition-duration: 0.2s;
+  transition-property: opacity;
+}
+
+body.tomato-idle {
+  .timer-button-secondary {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+.timer-button-icon {
+  vertical-align: text-bottom;
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: currentColor;
+}

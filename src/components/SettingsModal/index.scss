@@ -1,0 +1,72 @@
+@import '../../styles/abstracts';
+
+.settings-modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: map-get($spacers, 3);
+  background-color: rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+
+  &-open {
+    opacity: 1;
+    pointer-events: all;
+
+    .settings-modal-content {
+      transform: scale(1);
+    }
+  }
+}
+
+.settings-modal-content {
+  max-width: 400px;
+  background-color: map-get($color-variables, 'body-bg');
+  padding: map-get($spacers, 4);
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: $border-radius-lg;
+  box-shadow: 0 0.25rem 1.5rem 0 rgba(0, 0, 0, 0.25);
+  transform: scale(0.95);
+  transform-origin: top;
+  transition: transform 0.2s;
+}
+
+.settings-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: map-get($spacers, 4);
+}
+
+.settings-modal-close-button {
+  @include button();
+  @include button-variant('transparent');
+  width: 1.75rem;
+  height: 1.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.settings-modal-close-button-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: currentColor;
+}
+
+.settings-modal-title {
+  @include font-size(1.5rem);
+  margin-bottom: 0;
+}
+
+.settings-modal-note {
+  @include font-size($font-size-sm);
+  color: map-get($color-variables, 'muted');
+  text-align: right;
+  margin-bottom: 0;
+}

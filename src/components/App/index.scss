@@ -1,0 +1,274 @@
+@import '../../styles/abstracts';
+
+@import '~bootstrap/scss/reboot';
+@import '~bootstrap/scss/type';
+@import '~bootstrap/scss/containers';
+
+:root {
+  --#{$variable-prefix}primary: #{$primary};
+  --#{$variable-prefix}secondary: #{$secondary};
+  --#{$variable-prefix}contrast: #{$contrast};
+  --#{$variable-prefix}backdrop: #{$backdrop};
+  --#{$variable-prefix}muted: #{$muted};
+  --#{$variable-prefix}body-color: #{$body-color};
+  --#{$variable-prefix}body-bg: #{$body-bg};
+  --#{$variable-prefix}btn-main-color: #{$muted};
+  --#{$variable-prefix}btn-main-bg: transparent;
+  --#{$variable-prefix}btn-main-hover-bg: #{darken($body-bg, 3.75%)};
+  --#{$variable-prefix}btn-main-focus-shadow: #{rgba($muted, 0.5)};
+  --#{$variable-prefix}btn-muted-color: #{$muted};
+  --#{$variable-prefix}btn-muted-bg: transparent;
+  --#{$variable-prefix}btn-muted-hover-bg: #{darken($body-bg, 3.75%)};
+  --#{$variable-prefix}btn-muted-focus-shadow: #{rgba($muted, 0.125)};
+  --#{$variable-prefix}btn-transparent-color: #{$body-color};
+  --#{$variable-prefix}btn-transparent-bg: transparent;
+  --#{$variable-prefix}btn-transparent-hover-bg: #{darken($body-bg, 3.75%)};
+  --#{$variable-prefix}btn-transparent-focus-shadow: #{rgba($body-color, 0.125)};
+
+  --#{$variable-prefix}font-sans-serif: #{inspect($font-family-sans-serif)};
+  --#{$variable-prefix}font-monospace: #{inspect($font-family-monospace)};
+  --#{$variable-prefix}body-font-family: #{$font-family-base};
+  --#{$variable-prefix}body-font-size: #{$font-size-base};
+  --#{$variable-prefix}body-font-weight: #{$font-weight-base};
+  --#{$variable-prefix}body-line-height: #{$line-height-base};
+
+  @media (prefers-color-scheme: dark) {
+    --#{$variable-prefix}primary: #{$dark-primary};
+    --#{$variable-prefix}secondary: #{$dark-secondary};
+    --#{$variable-prefix}contrast: #{$dark-contrast};
+    --#{$variable-prefix}backdrop: #{$dark-backdrop};
+    --#{$variable-prefix}muted: #{$dark-muted};
+    --#{$variable-prefix}body-color: #{$dark-body-color};
+    --#{$variable-prefix}body-bg: #{$dark-body-bg};
+    --#{$variable-prefix}btn-main-color: #{$dark-muted};
+    --#{$variable-prefix}btn-main-bg: transparent;
+    --#{$variable-prefix}btn-main-hover-bg: #{lighten($dark-body-bg, 3.75%)};
+    --#{$variable-prefix}btn-main-focus-shadow: #{rgba($dark-muted, 0.5)};
+    --#{$variable-prefix}btn-muted-color: #{$dark-muted};
+    --#{$variable-prefix}btn-muted-bg: transparent;
+    --#{$variable-prefix}btn-muted-hover-bg: #{lighten($dark-body-bg, 3.75%)};
+    --#{$variable-prefix}btn-muted-focus-shadow: #{rgba($dark-muted, 0.125)};
+    --#{$variable-prefix}btn-transparent-color: #{$dark-body-color};
+    --#{$variable-prefix}btn-transparent-bg: transparent;
+    --#{$variable-prefix}btn-transparent-hover-bg: #{lighten(
+        $dark-body-bg,
+        3.75%
+      )};
+    --#{$variable-prefix}btn-transparent-focus-shadow: #{rgba(
+        $dark-body-color,
+        0.125
+      )};
+  }
+}
+
+body.tomato-focus {
+  &.tomato-idle {
+    --#{$variable-prefix}primary: #{$idle-primary};
+    --#{$variable-prefix}secondary: #{$idle-secondary};
+    --#{$variable-prefix}contrast: #{$idle-contrast};
+    --#{$variable-prefix}backdrop: #{$idle-backdrop};
+    --#{$variable-prefix}muted: #{$idle-muted};
+    --#{$variable-prefix}body-color: #{$idle-body-color};
+    --#{$variable-prefix}body-bg: #{$idle-body-bg};
+    --#{$variable-prefix}btn-main-color: #{$idle-backdrop};
+    --#{$variable-prefix}btn-main-bg: #{$idle-primary};
+    --#{$variable-prefix}btn-main-hover-bg: #{darken($idle-primary, 7.5%)};
+    --#{$variable-prefix}btn-main-focus-shadow: #{rgba($idle-primary, 0.5)};
+    --#{$variable-prefix}btn-muted-color: #{$idle-muted};
+    --#{$variable-prefix}btn-muted-bg: transparent;
+    --#{$variable-prefix}btn-muted-hover-bg: #{darken($idle-body-bg, 3.75%)};
+    --#{$variable-prefix}btn-muted-focus-shadow: #{rgba($idle-muted, 0.125)};
+    --#{$variable-prefix}btn-transparent-color: #{$idle-body-color};
+    --#{$variable-prefix}btn-transparent-bg: transparent;
+    --#{$variable-prefix}btn-transparent-hover-bg: #{darken(
+        $idle-body-bg,
+        3.75%
+      )};
+    --#{$variable-prefix}btn-transparent-focus-shadow: #{rgba(
+        $idle-body-color,
+        0.125
+      )};
+
+    @media (prefers-color-scheme: dark) {
+      --#{$variable-prefix}primary: #{$idle-dark-primary};
+      --#{$variable-prefix}secondary: #{$idle-dark-secondary};
+      --#{$variable-prefix}contrast: #{$idle-dark-contrast};
+      --#{$variable-prefix}backdrop: #{$idle-dark-backdrop};
+      --#{$variable-prefix}muted: #{$idle-dark-muted};
+      --#{$variable-prefix}body-color: #{$idle-dark-body-color};
+      --#{$variable-prefix}body-bg: #{$idle-dark-body-bg};
+      --#{$variable-prefix}btn-main-color: #{$idle-dark-contrast};
+      --#{$variable-prefix}btn-main-bg: #{$idle-dark-primary};
+      --#{$variable-prefix}btn-main-hover-bg: #{lighten(
+          $idle-dark-primary,
+          7.5%
+        )};
+      --#{$variable-prefix}btn-main-focus-shadow: #{rgba(
+          $idle-dark-primary,
+          0.5
+        )};
+      --#{$variable-prefix}btn-muted-color: #{$idle-dark-muted};
+      --#{$variable-prefix}btn-muted-bg: transparent;
+      --#{$variable-prefix}btn-muted-hover-bg: #{lighten(
+          $idle-dark-body-bg,
+          3.75%
+        )};
+      --#{$variable-prefix}btn-muted-focus-shadow: #{rgba(
+          $idle-dark-muted,
+          0.125
+        )};
+      --#{$variable-prefix}btn-transparent-color: #{$idle-dark-body-color};
+      --#{$variable-prefix}btn-transparent-bg: transparent;
+      --#{$variable-prefix}btn-transparent-hover-bg: #{lighten(
+          $idle-dark-body-bg,
+          3.75%
+        )};
+      --#{$variable-prefix}btn-transparent-focus-shadow: #{rgba(
+          $idle-dark-body-color,
+          0.125
+        )};
+    }
+  }
+}
+
+body.tomato-break {
+  --#{$variable-prefix}primary: #{$break-primary};
+  --#{$variable-prefix}secondary: #{$break-secondary};
+  --#{$variable-prefix}contrast: #{$break-contrast};
+  --#{$variable-prefix}backdrop: #{$break-backdrop};
+  --#{$variable-prefix}muted: #{$break-muted};
+  --#{$variable-prefix}body-color: #{$break-body-color};
+  --#{$variable-prefix}body-bg: #{$break-body-bg};
+  --#{$variable-prefix}btn-main-color: #{$break-muted};
+  --#{$variable-prefix}btn-main-bg: transparent;
+  --#{$variable-prefix}btn-main-hover-bg: #{darken($break-body-bg, 3.75%)};
+  --#{$variable-prefix}btn-main-focus-shadow: #{rgba($break-muted, 0.5)};
+  --#{$variable-prefix}btn-muted-color: #{$break-muted};
+  --#{$variable-prefix}btn-muted-bg: transparent;
+  --#{$variable-prefix}btn-muted-hover-bg: #{darken($break-body-bg, 3.75%)};
+  --#{$variable-prefix}btn-muted-focus-shadow: #{rgba($break-muted, 0.125)};
+  --#{$variable-prefix}btn-transparent-color: #{$break-body-color};
+  --#{$variable-prefix}btn-transparent-bg: transparent;
+  --#{$variable-prefix}btn-transparent-hover-bg: #{darken($break-body-bg, 3.75%)};
+  --#{$variable-prefix}btn-transparent-focus-shadow: #{rgba(
+      $break-body-color,
+      0.125
+    )};
+
+  @media (prefers-color-scheme: dark) {
+    --#{$variable-prefix}primary: #{$break-dark-primary};
+    --#{$variable-prefix}secondary: #{$break-dark-secondary};
+    --#{$variable-prefix}contrast: #{$break-dark-contrast};
+    --#{$variable-prefix}backdrop: #{$break-dark-backdrop};
+    --#{$variable-prefix}muted: #{$break-dark-muted};
+    --#{$variable-prefix}body-color: #{$break-dark-body-color};
+    --#{$variable-prefix}body-bg: #{$break-dark-body-bg};
+    --#{$variable-prefix}btn-main-color: #{$break-dark-muted};
+    --#{$variable-prefix}btn-main-bg: transparent;
+    --#{$variable-prefix}btn-main-hover-bg: #{lighten(
+        $break-dark-body-bg,
+        3.75%
+      )};
+    --#{$variable-prefix}btn-main-focus-shadow: #{rgba($break-dark-muted, 0.5)};
+    --#{$variable-prefix}btn-muted-color: #{$break-dark-muted};
+    --#{$variable-prefix}btn-muted-bg: transparent;
+    --#{$variable-prefix}btn-muted-hover-bg: #{lighten(
+        $break-dark-body-bg,
+        3.75%
+      )};
+    --#{$variable-prefix}btn-muted-focus-shadow: #{rgba(
+        $break-dark-muted,
+        0.125
+      )};
+    --#{$variable-prefix}btn-transparent-color: #{$break-dark-body-color};
+    --#{$variable-prefix}btn-transparent-bg: transparent;
+    --#{$variable-prefix}btn-transparent-hover-bg: #{lighten(
+        $break-dark-body-bg,
+        3.75%
+      )};
+    --#{$variable-prefix}btn-transparent-focus-shadow: #{rgba(
+        $break-dark-body-color,
+        0.125
+      )};
+  }
+
+  &.tomato-idle {
+    --#{$variable-prefix}primary: #{$break-idle-primary};
+    --#{$variable-prefix}secondary: #{$break-idle-secondary};
+    --#{$variable-prefix}contrast: #{$break-idle-contrast};
+    --#{$variable-prefix}backdrop: #{$break-idle-backdrop};
+    --#{$variable-prefix}muted: #{$break-idle-muted};
+    --#{$variable-prefix}body-color: #{$break-idle-body-color};
+    --#{$variable-prefix}body-bg: #{$break-idle-body-bg};
+    --#{$variable-prefix}btn-main-color: #{$break-idle-backdrop};
+    --#{$variable-prefix}btn-main-bg: #{$break-idle-secondary};
+    --#{$variable-prefix}btn-main-hover-bg: #{darken(
+        $break-idle-secondary,
+        7.5%
+      )};
+    --#{$variable-prefix}btn-main-focus-shadow: #{rgba(
+        $break-idle-secondary,
+        0.5
+      )};
+    --#{$variable-prefix}btn-muted-color: #{$break-idle-muted};
+    --#{$variable-prefix}btn-muted-bg: transparent;
+    --#{$variable-prefix}btn-muted-hover-bg: #{darken(
+        $break-idle-body-bg,
+        3.75%
+      )};
+    --#{$variable-prefix}btn-muted-focus-shadow: #{rgba(
+        $break-idle-muted,
+        0.125
+      )};
+    --#{$variable-prefix}btn-transparent-color: #{$break-idle-body-color};
+    --#{$variable-prefix}btn-transparent-bg: transparent;
+    --#{$variable-prefix}btn-transparent-hover-bg: #{darken(
+        $break-idle-body-bg,
+        3.75%
+      )};
+    --#{$variable-prefix}btn-transparent-focus-shadow: #{rgba(
+        $break-idle-body-color,
+        0.125
+      )};
+
+    @media (prefers-color-scheme: dark) {
+      --#{$variable-prefix}primary: #{$break-idle-dark-primary};
+      --#{$variable-prefix}secondary: #{$break-idle-dark-secondary};
+      --#{$variable-prefix}contrast: #{$break-idle-dark-contrast};
+      --#{$variable-prefix}backdrop: #{$break-idle-dark-backdrop};
+      --#{$variable-prefix}muted: #{$break-idle-dark-muted};
+      --#{$variable-prefix}body-color: #{$break-idle-dark-body-color};
+      --#{$variable-prefix}body-bg: #{$break-idle-dark-body-bg};
+      --#{$variable-prefix}btn-main-color: #{$break-idle-dark-contrast};
+      --#{$variable-prefix}btn-main-bg: #{$break-idle-dark-secondary};
+      --#{$variable-prefix}btn-main-hover-bg: #{lighten(
+          $break-idle-dark-secondary,
+          7.5%
+        )};
+      --#{$variable-prefix}btn-main-focus-shadow: #{rgba(
+          $break-idle-dark-secondary,
+          0.5
+        )};
+      --#{$variable-prefix}btn-muted-color: #{$break-idle-dark-muted};
+      --#{$variable-prefix}btn-muted-bg: transparent;
+      --#{$variable-prefix}btn-muted-hover-bg: #{lighten(
+          $break-idle-dark-body-bg,
+          3.75%
+        )};
+      --#{$variable-prefix}btn-muted-focus-shadow: #{rgba(
+          $break-idle-dark-muted,
+          0.125
+        )};
+      --#{$variable-prefix}btn-transparent-color: #{$break-idle-dark-body-color};
+      --#{$variable-prefix}btn-transparent-bg: transparent;
+      --#{$variable-prefix}btn-transparent-hover-bg: #{lighten(
+          $break-idle-dark-body-bg,
+          3.75%
+        )};
+      --#{$variable-prefix}btn-transparent-focus-shadow: #{rgba(
+          $break-idle-dark-body-color,
+          0.125
+        )};
+    }
+  }
+}

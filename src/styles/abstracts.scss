@@ -1,0 +1,117 @@
+@import '~bootstrap/scss/functions';
+
+$variable-prefix: tomato-;
+
+$primary: #ee3915;
+$secondary: #70be39;
+$contrast: #000;
+$backdrop: #fff;
+$muted: #edb6ab;
+$body-color: #fff;
+$body-bg: #bf7f72;
+
+$dark-primary: #ee3915;
+$dark-secondary: #70be39;
+$dark-contrast: #fff;
+$dark-backdrop: #000;
+$dark-muted: #b77568;
+$dark-body-color: #fff;
+$dark-body-bg: #2f140f;
+
+$idle-primary: $primary;
+$idle-secondary: $secondary;
+$idle-contrast: $contrast;
+$idle-backdrop: $backdrop;
+$idle-muted: #815952;
+$idle-body-color: #3a201c;
+$idle-body-bg: #e1d6d4;
+
+$idle-dark-primary: $dark-primary;
+$idle-dark-secondary: $dark-secondary;
+$idle-dark-contrast: $dark-contrast;
+$idle-dark-backdrop: $dark-backdrop;
+$idle-dark-muted: #815952;
+$idle-dark-body-color: #c5b2b0;
+$idle-dark-body-bg: #140402;
+
+$break-primary: $primary;
+$break-secondary: $secondary;
+$break-contrast: #000;
+$break-backdrop: #fff;
+$break-muted: #c2e7a7;
+$break-body-color: #fff;
+$break-body-bg: #8fbb70;
+
+$break-dark-primary: $dark-primary;
+$break-dark-secondary: $dark-secondary;
+$break-dark-contrast: $dark-contrast;
+$break-dark-backdrop: $dark-backdrop;
+$break-dark-muted: #7faf63;
+$break-dark-body-color: #fff;
+$break-dark-body-bg: #192c0e;
+
+$break-idle-primary: $break-primary;
+$break-idle-secondary: $break-secondary;
+$break-idle-contrast: $break-contrast;
+$break-idle-backdrop: $break-backdrop;
+$break-idle-muted: #648153;
+$break-idle-body-color: #273a1c;
+$break-idle-body-bg: #d1d9cc;
+
+$break-idle-dark-primary: $break-dark-primary;
+$break-idle-dark-secondary: $break-dark-secondary;
+$break-idle-dark-contrast: $break-dark-contrast;
+$break-idle-dark-backdrop: $break-dark-backdrop;
+$break-idle-dark-muted: #576d42;
+$break-idle-dark-body-color: #b5c0ab;
+$break-idle-dark-body-bg: #0c1902;
+
+$color-variables: (
+  'primary': var(--#{$variable-prefix}primary),
+  'secondary': var(--#{$variable-prefix}secondary),
+  'body-color': var(--#{$variable-prefix}body-color),
+  'contrast': var(--#{$variable-prefix}contrast),
+  'backdrop': var(--#{$variable-prefix}backdrop),
+  'muted': var(--#{$variable-prefix}muted),
+  'body-bg': var(--#{$variable-prefix}body-bg),
+  'buttons': (
+    'main': (
+      'color': var(--#{$variable-prefix}btn-main-color),
+      'bg': var(--#{$variable-prefix}btn-main-bg),
+      'hover-bg': var(--#{$variable-prefix}btn-main-hover-bg),
+      'focus-shadow': var(--#{$variable-prefix}btn-main-focus-shadow),
+    ),
+    'muted': (
+      'color': var(--#{$variable-prefix}btn-muted-color),
+      'bg': var(--#{$variable-prefix}btn-muted-bg),
+      'hover-bg': var(--#{$variable-prefix}btn-muted-hover-bg),
+      'focus-shadow': var(--#{$variable-prefix}btn-muted-focus-shadow),
+    ),
+    'transparent': (
+      'color': var(--#{$variable-prefix}btn-transparent-color),
+      'bg': var(--#{$variable-prefix}btn-transparent-bg),
+      'hover-bg': var(--#{$variable-prefix}btn-transparent-hover-bg),
+      'focus-shadow': var(--#{$variable-prefix}btn-transparent-focus-shadow),
+    ),
+  ),
+);
+
+$min-contrast-ratio: 3;
+
+$border-radius-sm: 0.425rem;
+$border-radius: 0.625rem;
+$border-radius-lg: 1rem;
+
+$container-padding-x: 1.5rem;
+
+$btn-font-weight: 500;
+
+@import '~bootstrap/scss/variables';
+
+$grid-breakpoints: map-remove($grid-breakpoints, 'lg', 'xl', 'xxl');
+$container-max-widths: map-remove($container-max-widths, 'lg', 'xl', 'xxl');
+
+@import '~bootstrap/scss/vendor/rfs';
+@import '~bootstrap/scss/mixins';
+
+@import 'mixins';

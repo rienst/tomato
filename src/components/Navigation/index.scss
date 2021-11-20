@@ -1,0 +1,83 @@
+@import '../../styles/abstracts';
+
+.navigation {
+  padding-top: map-get($spacers, 5);
+  padding-bottom: map-get($spacers, 5);
+  opacity: 0;
+  pointer-events: none;
+  transition-duration: 0.2s;
+  transition-property: opacity;
+
+  @include media-breakpoint-down(sm) {
+    padding-top: map-get($spacers, 4);
+    padding-bottom: map-get($spacers, 4);
+  }
+}
+
+body.tomato-idle {
+  .navigation {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+.navigation-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navigation-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navigation-logo {
+  width: 100%;
+  max-width: 2.5rem;
+  height: auto;
+  flex-shrink: 0;
+  margin-right: map-get($spacers, 3);
+}
+
+.navigation-logo-path-primary {
+  fill: map-get($color-variables, 'primary');
+}
+
+.navigation-logo-path-secondary {
+  fill: map-get($color-variables, 'secondary');
+}
+
+.navigation-logo-path-dark {
+  fill: map-get($color-variables, 'body-color');
+}
+
+.navigation-title {
+  @include font-size(1.25rem);
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+.timer {
+  padding-top: map-get($spacers, 5);
+  padding-bottom: map-get($spacers, 5);
+}
+
+.navigation-button {
+  @include button();
+  @include button-variant('muted');
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border-radius: 1000px;
+}
+
+.navigation-button-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: currentColor;
+}
