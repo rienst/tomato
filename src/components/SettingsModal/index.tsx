@@ -40,6 +40,12 @@ const SettingsModal: FC<SettingsModalProps> = ({ open = false, onDismiss }) => {
   const handleSave = () => {
     updateModeMinutes('focus', parseInt(newFocusMinutes))
     updateModeMinutes('break', parseInt(newBreakMinutes))
+
+    if (!onDismiss) {
+      return
+    }
+
+    onDismiss()
   }
 
   const handleOnClose = () => {
@@ -55,8 +61,11 @@ const SettingsModal: FC<SettingsModalProps> = ({ open = false, onDismiss }) => {
       return
     }
 
+    setNewFocusMinutes(focusMinutes.toString())
+    setNewBreakMinutes(breakMinutes.toString())
+
     closeButtonRef.current?.focus()
-  }, [open])
+  }, [open, focusMinutes, breakMinutes])
 
   if (!portalElement) return <></>
 
