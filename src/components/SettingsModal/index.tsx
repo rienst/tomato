@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useEffect, useRef } from 'react'
+import { ChangeEvent, FC, useEffect, useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
 import useTimer from '../../hooks/useTimer'
 import SettingsField from './SettingsField'
@@ -11,20 +11,33 @@ interface SettingsModalProps {
 
 const SettingsModal: FC<SettingsModalProps> = ({ open = false, onDismiss }) => {
   const { focusMinutes, breakMinutes, updateModeMinutes } = useTimer()
+
+  const [newFocusMinutes, setNewFocusMinutes] = useState<number>(focusMinutes)
+  const [newBreakMinutes, setNewBreakMinutes] = useState<number>(breakMinutes)
+
   const closeButtonRef = useRef<HTMLButtonElement>(null)
+
   const portalElement = document.getElementById('modal-root')
+
   const classes: string[] = ['settings-modal']
 
   if (open) {
     classes.push('settings-modal-open')
   }
 
-  const handleSetFocusMinutes = (event: ChangeEvent<HTMLInputElement>) => {
-    updateModeMinutes('focus', parseInt(event.target.value))
+  const canSave = !isNaN(newFocusMinutes) ?? !isNaN(newBreakMinutes)
+
+  const handleSetNewFocusMinutes = (event: ChangeEvent<HTMLInputElement>) => {
+    setNewFocusMinutes(parseInt(event.target.value))
   }
 
-  const handleSetBreakMinutes = (event: ChangeEvent<HTMLInputElement>) => {
-    updateModeMinutes('break', parseInt(event.target.value))
+  const handleSetNewBreakMinutes = (event: ChangeEvent<HTMLInputElement>) => {
+    setNewBreakMinutes(parseInt(event.target.value))
+  }
+
+  const handleSave = () => {
+    updateModeMinutes('focus', newFocusMinutes)
+    updateModeMinutes('break', newBreakMinutes)
   }
 
   const handleOnClose = () => {
@@ -72,8 +85,8 @@ const SettingsModal: FC<SettingsModalProps> = ({ open = false, onDismiss }) => {
           type="number"
           min="1"
           label="Focus duration"
-          value={focusMinutes.toString()}
-          onChange={handleSetFocusMinutes}
+          value={newFocusMinutes.toString()}
+          onChange={handleSetNewFocusMinutes}
         />
 
         <SettingsField
@@ -82,11 +95,19 @@ const SettingsModal: FC<SettingsModalProps> = ({ open = false, onDismiss }) => {
           type="number"
           min="1"
           label="Break duration"
-          value={breakMinutes.toString()}
-          onChange={handleSetBreakMinutes}
+          value={newBreakMinutes.toString()}
+          onChange={handleSetNewBreakMinutes}
         />
 
         <p className="settings-modal-note">All values are in minutes.</p>
+
+        <button
+          className="settings-modal-save-button"
+          onClick={handleSave}
+          disabled={!canSave}
+        >
+          Save settings
+        </button>
       </div>
     </div>,
     portalElement

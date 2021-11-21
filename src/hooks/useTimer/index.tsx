@@ -6,6 +6,7 @@ import {
   useEffect,
   useState,
 } from 'react'
+import useLocalStorage from '../useLocalStorage'
 
 type ModeName = 'focus' | 'break'
 
@@ -29,8 +30,14 @@ export const TimerProvider: FC = ({ children }) => {
   const [idle, setIdle] = useState<boolean>(true)
   const [msPassed, setMsPassed] = useState<number>(0)
   const [mode, setMode] = useState<ModeName>('focus')
-  const [focusMinutes, setFocusMinutes] = useState<number>(25)
-  const [breakMinutes, setBreakMinutes] = useState<number>(5)
+  const [focusMinutes, setFocusMinutes] = useLocalStorage<number>(
+    'focusMinutes',
+    25
+  )
+  const [breakMinutes, setBreakMinutes] = useLocalStorage<number>(
+    'breakMinutes',
+    5
+  )
 
   const getCurrentModeMs = useCallback(() => {
     const currentModeMinutes = mode === 'focus' ? focusMinutes : breakMinutes

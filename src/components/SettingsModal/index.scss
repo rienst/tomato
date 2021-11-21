@@ -68,5 +68,11 @@
   @include font-size($font-size-sm);
   color: map-get($color-variables, 'muted');
   text-align: right;
-  margin-bottom: 0;
+}
+
+.settings-modal-save-button {
+  @include button();
+  @include button-variant('main');
+  display: block;
+  width: 100%;
 }
