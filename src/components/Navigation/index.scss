@@ -58,9 +58,14 @@ body.tomato-idle {
   margin-bottom: 0;
 }
 
-.timer {
-  padding-top: map-get($spacers, 5);
-  padding-bottom: map-get($spacers, 5);
+.navigation-settings {
+  display: flex;
+
+  > * {
+    &:not(:last-child) {
+      margin-right: map-get($spacers, 2);
+    }
+  }
 }
 
 .navigation-button {
