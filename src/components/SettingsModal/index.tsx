@@ -12,8 +12,12 @@ interface SettingsModalProps {
 const SettingsModal: FC<SettingsModalProps> = ({ open = false, onDismiss }) => {
   const { focusMinutes, breakMinutes, updateModeMinutes } = useTimer()
 
-  const [newFocusMinutes, setNewFocusMinutes] = useState<number>(focusMinutes)
-  const [newBreakMinutes, setNewBreakMinutes] = useState<number>(breakMinutes)
+  const [newFocusMinutes, setNewFocusMinutes] = useState<string>(
+    focusMinutes.toString()
+  )
+  const [newBreakMinutes, setNewBreakMinutes] = useState<string>(
+    breakMinutes.toString()
+  )
 
   const closeButtonRef = useRef<HTMLButtonElement>(null)
 
@@ -25,19 +29,17 @@ const SettingsModal: FC<SettingsModalProps> = ({ open = false, onDismiss }) => {
     classes.push('settings-modal-open')
   }
 
-  const canSave = !isNaN(newFocusMinutes) ?? !isNaN(newBreakMinutes)
-
   const handleSetNewFocusMinutes = (event: ChangeEvent<HTMLInputElement>) => {
-    setNewFocusMinutes(parseInt(event.target.value))
+    setNewFocusMinutes(event.target.value)
   }
 
   const handleSetNewBreakMinutes = (event: ChangeEvent<HTMLInputElement>) => {
-    setNewBreakMinutes(parseInt(event.target.value))
+    setNewBreakMinutes(event.target.value)
   }
 
   const handleSave = () => {
-    updateModeMinutes('focus', newFocusMinutes)
-    updateModeMinutes('break', newBreakMinutes)
+    updateModeMinutes('focus', parseInt(newFocusMinutes))
+    updateModeMinutes('break', parseInt(newBreakMinutes))
   }
 
   const handleOnClose = () => {
@@ -84,6 +86,7 @@ const SettingsModal: FC<SettingsModalProps> = ({ open = false, onDismiss }) => {
           name="focusTime"
           type="number"
           min="1"
+          max="60"
           label="Focus duration"
           value={newFocusMinutes.toString()}
           onChange={handleSetNewFocusMinutes}
@@ -94,6 +97,7 @@ const SettingsModal: FC<SettingsModalProps> = ({ open = false, onDismiss }) => {
           name="breakTime"
           type="number"
           min="1"
+          max="60"
           label="Break duration"
           value={newBreakMinutes.toString()}
           onChange={handleSetNewBreakMinutes}
@@ -101,11 +105,7 @@ const SettingsModal: FC<SettingsModalProps> = ({ open = false, onDismiss }) => {
 
         <p className="settings-modal-note">All values are in minutes.</p>
 
-        <button
-          className="settings-modal-save-button"
-          onClick={handleSave}
-          disabled={!canSave}
-        >
+        <button className="settings-modal-save-button" onClick={handleSave}>
           Save settings
         </button>
       </div>

@@ -48,6 +48,13 @@ export const TimerProvider: FC = ({ children }) => {
   const getClockValues = () => {
     const ISOString = new Date(getCurrentModeMs() - msPassed).toISOString()
 
+    if (ISOString.substr(12, 7) === '1:00:00') {
+      return {
+        minutes: '60',
+        seconds: '00',
+      }
+    }
+
     return {
       minutes: ISOString.substr(14, 2),
       seconds: ISOString.substr(17, 2),
