@@ -96,7 +96,7 @@ const SettingsModal: FC<SettingsModalProps> = ({ open = false, onDismiss }) => {
           type="number"
           min="1"
           max="60"
-          label="Focus duration"
+          label="Focus minutes"
           value={newFocusMinutes.toString()}
           onChange={handleSetNewFocusMinutes}
         />
@@ -107,12 +107,10 @@ const SettingsModal: FC<SettingsModalProps> = ({ open = false, onDismiss }) => {
           type="number"
           min="1"
           max="60"
-          label="Break duration"
+          label="Break minutes"
           value={newBreakMinutes.toString()}
           onChange={handleSetNewBreakMinutes}
         />
-
-        <p className="settings-modal-note">All values are in minutes.</p>
 
         <button className="settings-modal-save-button" onClick={handleSave}>
           Save settings
