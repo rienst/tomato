@@ -19,6 +19,7 @@ interface TimerContextProps {
   updateModeMinutes: (modeName: ModeName, minutes: number) => void
   startTimer: () => void
   pauseTimer: () => void
+  resetTimer: () => void
   skipTimer: () => void
 }
 
@@ -90,12 +91,17 @@ export const TimerProvider: FC = ({ children }) => {
     setIdle(true)
   }
 
-  const skipTimer = useCallback(() => {
+  const resetTimer = useCallback(() => {
     pauseTimer()
 
-    setMode(mode => (mode === 'focus' ? 'break' : 'focus'))
     setMsPassed(0)
   }, [])
+
+  const skipTimer = useCallback(() => {
+    resetTimer()
+
+    setMode(mode => (mode === 'focus' ? 'break' : 'focus'))
+  }, [resetTimer])
 
   const watcher = useCallback(() => {
     if (idle) {
@@ -126,6 +132,7 @@ export const TimerProvider: FC = ({ children }) => {
     updateModeMinutes,
     startTimer,
     pauseTimer,
+    resetTimer,
     skipTimer,
   }
 

@@ -10,7 +10,8 @@ interface SettingsModalProps {
 }
 
 const SettingsModal: FC<SettingsModalProps> = ({ open = false, onDismiss }) => {
-  const { focusMinutes, breakMinutes, updateModeMinutes } = useTimer()
+  const { resetTimer, focusMinutes, breakMinutes, updateModeMinutes } =
+    useTimer()
 
   const [newFocusMinutes, setNewFocusMinutes] = useState<string>(
     focusMinutes.toString()
@@ -40,6 +41,8 @@ const SettingsModal: FC<SettingsModalProps> = ({ open = false, onDismiss }) => {
   const handleSave = () => {
     updateModeMinutes('focus', parseInt(newFocusMinutes))
     updateModeMinutes('break', parseInt(newBreakMinutes))
+
+    resetTimer()
 
     if (!onDismiss) {
       return
