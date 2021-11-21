@@ -1,5 +1,4 @@
 import { FC, useState } from 'react'
-import logo from '../../logo.svg'
 import SettingsModal from '../SettingsModal'
 import './index.scss'
 
