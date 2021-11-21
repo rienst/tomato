@@ -64,12 +64,6 @@
   margin-bottom: 0;
 }
 
-.settings-modal-note {
-  @include font-size($font-size-sm);
-  color: map-get($color-variables, 'muted');
-  text-align: right;
-}
-
 .settings-modal-save-button {
   @include button();
   @include button-variant('main');
