@@ -1,7 +1,7 @@
 # Tomato
 
-A colorful pomodoro timer, built in React.
+A colorful pomodoro timer.
 
-## To do
+## Other versions of this app
 
-- [ ] Add option to auto-start next timer.
+- [React with the Context API](https://github.com/rienst/tomato-context)

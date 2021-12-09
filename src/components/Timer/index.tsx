@@ -1,11 +1,20 @@
+import { observer } from 'mobx-react'
 import { FC, useEffect } from 'react'
-import useTimer from '../../hooks/useTimer'
+import store from '../../store'
 import './index.scss'
 
-const Timer: FC = () => {
-  const { idle, getClockValues, startTimer, pauseTimer, skipTimer, mode } =
-    useTimer()
-
+const Timer: FC = observer(() => {
+  const {
+    mode,
+    idle,
+    msPassed,
+    startTimer,
+    pauseTimer,
+    skipTimer,
+    getClockValues,
+    startWatcher,
+    stopWatcher,
+  } = store
   const { minutes, seconds } = getClockValues()
 
   const handleStartTimer = () => {
@@ -21,10 +30,16 @@ const Timer: FC = () => {
   }
 
   useEffect(() => {
-    const status = mode === 'focus' ? 'Focus' : 'Break'
+    const status = store.mode === 'focus' ? 'Focus' : 'Break'
 
-    document.title = idle ? 'Tomato' : `${status} - Tomato`
+    document.title = store.idle ? 'Tomato' : `${status} - Tomato`
   }, [minutes, seconds, mode, idle])
+
+  useEffect(() => {
+    startWatcher()
+
+    return () => stopWatcher()
+  }, [idle, mode, msPassed, startWatcher, stopWatcher])
 
   return (
     <main className="timer">
@@ -78,6 +93,6 @@ const Timer: FC = () => {
       </div>
     </main>
   )
-}
+})
 
 export default Timer

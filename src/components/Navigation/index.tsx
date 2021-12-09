@@ -191,7 +191,7 @@ const Navigation: FC = () => {
 
           <div className="navigation-settings">
             <a
-              href="https://github.com/rienst/tomato"
+              href="https://github.com/rienst/tomato-mobx"
               target="_blank"
               rel="noreferrer"
               className="navigation-button"
