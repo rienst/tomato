@@ -5,8 +5,8 @@ export const validateTime = (time: number) => {
     return false
   }
 
-  if (time <= 0) {
-    return 0
+  if (time <= 1000) {
+    return 1000
   }
 
   if (time > 3600000) {

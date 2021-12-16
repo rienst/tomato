@@ -1,6 +1,6 @@
 {
   "name": "tomato",
-  "homepage": "https://rienst.github.io/tomato-mobx",
+  "homepage": "https://rienst.github.io/tomato-redux",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

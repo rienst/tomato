@@ -20,13 +20,12 @@ const App: FC = () => {
       return
     }
 
-    // Timer is finished
-    if (timePassed >= currentModeTime) {
+    // Timer is finished, or will be finished in the next 999ms
+    if (timePassed >= currentModeTime - 999) {
       return dispatch(createSkipTimerAction())
     }
 
     // Timer is running
-
     const currentTime = new Date().getTime()
     const timeSinceLastWatch = currentTime - timeOfLastWatch
 
