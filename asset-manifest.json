@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/tomato-redux/static/css/main.6856b42f.chunk.css",
+    "main.js": "/tomato-redux/static/js/main.bb105a00.chunk.js",
+    "main.js.map": "/tomato-redux/static/js/main.bb105a00.chunk.js.map",
+    "runtime-main.js": "/tomato-redux/static/js/runtime-main.08247dae.js",
+    "runtime-main.js.map": "/tomato-redux/static/js/runtime-main.08247dae.js.map",
+    "static/js/2.b21988b1.chunk.js": "/tomato-redux/static/js/2.b21988b1.chunk.js",
+    "static/js/2.b21988b1.chunk.js.map": "/tomato-redux/static/js/2.b21988b1.chunk.js.map",
+    "index.html": "/tomato-redux/index.html",
+    "static/css/main.6856b42f.chunk.css.map": "/tomato-redux/static/css/main.6856b42f.chunk.css.map",
+    "static/js/2.b21988b1.chunk.js.LICENSE.txt": "/tomato-redux/static/js/2.b21988b1.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.08247dae.js",
+    "static/js/2.b21988b1.chunk.js",
+    "static/css/main.6856b42f.chunk.css",
+    "static/js/main.bb105a00.chunk.js"
+  ]
+}
