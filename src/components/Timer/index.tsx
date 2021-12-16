@@ -1,45 +1,35 @@
-import { observer } from 'mobx-react'
 import { FC, useEffect } from 'react'
-import store from '../../store'
+import { useDispatch } from 'react-redux'
+import {
+  createPauseTimerAction,
+  createSkipTimerAction,
+  createStartTimerAction,
+} from '../../store/action-creators'
+import { useClockValue, useGlobalState } from '../../store/selectors'
 import './index.scss'
 
-const Timer: FC = observer(() => {
-  const {
-    mode,
-    idle,
-    msPassed,
-    startTimer,
-    pauseTimer,
-    skipTimer,
-    getClockValues,
-    startWatcher,
-    stopWatcher,
-  } = store
-  const { minutes, seconds } = getClockValues()
+const Timer: FC = () => {
+  const { mode, timeOfLastWatch } = useGlobalState()
+  const clockValue = useClockValue()
+  const dispatch = useDispatch()
 
   const handleStartTimer = () => {
-    startTimer()
+    dispatch(createStartTimerAction())
   }
 
   const handlePauseTimer = () => {
-    pauseTimer()
+    dispatch(createPauseTimerAction())
   }
 
   const handleSkipTimer = () => {
-    skipTimer()
+    dispatch(createSkipTimerAction())
   }
 
   useEffect(() => {
-    const status = store.mode === 'focus' ? 'Focus' : 'Break'
+    const status = mode === 'focus' ? 'Focus' : 'Break'
 
-    document.title = store.idle ? 'Tomato' : `${status} - Tomato`
-  }, [minutes, seconds, mode, idle])
-
-  useEffect(() => {
-    startWatcher()
-
-    return () => stopWatcher()
-  }, [idle, mode, msPassed, startWatcher, stopWatcher])
+    document.title = timeOfLastWatch ? `${status} - Tomato` : 'Tomato'
+  }, [mode, timeOfLastWatch])
 
   return (
     <main className="timer">
@@ -48,25 +38,10 @@ const Timer: FC = observer(() => {
           {mode === 'focus' ? 'Time to focus' : 'Time for a break!'}
         </div>
 
-        <div className="timer-time">
-          {minutes}:{seconds}
-        </div>
+        <div className="timer-time">{clockValue}</div>
 
         <div>
-          {idle ? (
-            <button
-              className="timer-button timer-button-primary timer-button-primary-paused"
-              onClick={handleStartTimer}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="timer-button-icon"
-                viewBox="0 0 16 16"
-              >
-                <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
-              </svg>
-            </button>
-          ) : (
+          {timeOfLastWatch ? (
             <button
               className="timer-button timer-button-primary timer-button-primary-started"
               onClick={handlePauseTimer}
@@ -77,6 +52,19 @@ const Timer: FC = observer(() => {
                 viewBox="0 0 16 16"
               >
                 <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z" />
+              </svg>
+            </button>
+          ) : (
+            <button
+              className="timer-button timer-button-primary timer-button-primary-paused"
+              onClick={handleStartTimer}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="timer-button-icon"
+                viewBox="0 0 16 16"
+              >
+                <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
               </svg>
             </button>
           )}
@@ -93,6 +81,6 @@ const Timer: FC = observer(() => {
       </div>
     </main>
   )
-})
+}
 
 export default Timer

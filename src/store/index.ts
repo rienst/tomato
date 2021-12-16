@@ -1,52 +1,78 @@
-import { autorun, makeAutoObservable } from 'mobx'
-import {
-  loadLocalStorage,
-  getCurrentModeMs,
-  getClockValues,
-  updateModeMinutes,
-  startTimer,
-  pauseTimer,
-  resetTimer,
-  skipTimer,
-  watch,
-  startWatcher,
-  stopWatcher,
-} from './actions'
+import { createStore, Reducer } from 'redux'
+import { validateTime } from './helpers'
+import { Action, State } from './types'
 
-export type ModeName = 'focus' | 'break'
-
-export class Store {
-  constructor() {
-    makeAutoObservable(this)
-    loadLocalStorage(this)
-  }
-
-  idle = true
-  mode: ModeName = 'focus'
-  focusMinutes = 25
-  breakMinutes = 5
-  msPassed = 0
-  watcher?: NodeJS.Timeout
-
-  loadLocalStorage = () => loadLocalStorage(this)
-  getCurrentModeMs = () => getCurrentModeMs(this)
-  getClockValues = () => getClockValues(this)
-  updateModeMinutes = (modeName: ModeName, minutes: number) =>
-    updateModeMinutes(this, modeName, minutes)
-  startTimer = () => startTimer(this)
-  pauseTimer = () => pauseTimer(this)
-  resetTimer = () => resetTimer(this)
-  skipTimer = () => skipTimer(this)
-  watch = () => watch(this)
-  startWatcher = () => startWatcher(this)
-  stopWatcher = () => stopWatcher(this)
+const initialState: State = {
+  timePassed: 0,
+  mode: 'focus',
+  focusTime: 25 * 60 * 1000,
+  breakTime: 5 * 60 * 1000,
 }
 
-const store = new Store()
+const storeReducer: Reducer<State> = (
+  state: State = initialState,
+  action: Action
+) => {
+  switch (action.type) {
+    case 'set-focus-time':
+      const focusTime = validateTime(action.time)
 
-autorun(() => {
-  localStorage.setItem('tomato-focus-minutes', store.focusMinutes.toString())
-  localStorage.setItem('tomato-break-minutes', store.breakMinutes.toString())
+      return {
+        ...state,
+        focusTime: focusTime ? focusTime : state.focusTime,
+      }
+    case 'set-break-time':
+      const breakTime = validateTime(action.time)
+
+      return {
+        ...state,
+        breakTime: breakTime ? breakTime : state.breakTime,
+      }
+    case 'set-time-of-last-watch':
+      return {
+        ...state,
+        timeOfLastWatch: action.time,
+      }
+    case 'set-time-passed':
+      return {
+        ...state,
+        timePassed: action.time,
+      }
+    case 'start-timer':
+      return {
+        ...state,
+        timeOfLastWatch: new Date().getTime(),
+      }
+    case 'pause-timer':
+      return {
+        ...state,
+        timeOfLastWatch: undefined,
+      }
+    case 'reset-timer':
+      return {
+        ...state,
+        timeOfLastWatch: undefined,
+        msPassed: 0,
+      }
+    case 'skip-timer':
+      return {
+        ...state,
+        timeOfLastWatch: undefined,
+        timePassed: 0,
+        mode: state.mode === 'focus' ? 'break' : 'focus',
+      }
+    default:
+      return state
+  }
+}
+
+const store = createStore(storeReducer)
+
+store.subscribe(() => {
+  const state = store.getState()
+
+  localStorage.setItem('tomato-focus-time', state.focusTime.toString())
+  localStorage.setItem('tomato-break-time', state.breakTime.toString())
 })
 
 export default store
