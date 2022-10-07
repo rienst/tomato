@@ -1,3 +1,3 @@
 # Tomato
 
-A colorful pomodoro timer.
+A colorful React & Redux pomodoro timer.
